@@ -2,19 +2,20 @@
   <div class="row">
     <div class="col-md-12">
       <div class="input-group mb-3 mt-5">
-        <input type="text" class="form-control" placeholder="Eenter VAT number">
+        <input type="text" class="form-control" placeholder="Eenter VAT number" (keyup)="onKey($event.target.value)">
       </div>
-      <ul class="list-group">
-        <li class="list-group-item">VAT Number: test</li>
-        <li class="list-group-item">Valid: test</li>
-        <li class="list-group-item">Name: test</li>
-        <li class="list-group-item">Address: test</li>
-        <li class="list-group-item">Country Code: test</li>
-        <li class="list-group-item">Request Date: test</li>
+      <ul class="list-group" *ngIf="vatData?.VATNumber">
+        <li class="list-group-item">VAT Number: {{ vatData.VATNumber }}</li>
+        <li class="list-group-item">Valid: {{ vatData.Valid }}</li>
+        <li class="list-group-item">Name: {{ vatData.Name }}</li>
+        <li class="list-group-item">Address: {{ vatData.Address }}</li>
+        <li class="list-group-item">Country Code: {{ vatData.CountryCode }}</li>
+        <li class="list-group-item">Request Date: {{ vatData.RequestDate }}</li>
       </ul>
       <div>
-        <div class="alert alert-danger" role="alert">
-          Error
+        <div class="alert alert-danger" role="alert" *ngIf="vatData?.error">
+          {{ vatData?.error }}
+          {{ vatData?.error?.response?.error }}
         </div>
       </div>
     </div>
